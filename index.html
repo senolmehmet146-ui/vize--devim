@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="tr" data-tema="acik">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mehmet Şenol | Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;800&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --vurgu: #052b50;
+      --yazi: #0a0f2e;
+      --arka: #f0f5ff;
+      --kart: #ffffff;
+      --kart-sinir: #d0e4ff;
+      --nav-arka: rgba(240,245,255,0.92);
+     
+    }
+    
+    /* Karanlık Mod Renkleri */
+    [data-tema="karanlik"] {
+      --yazi: #d0d5df;
+      --arka: #07091a;
+      --kart: #0f1535;
+      
+    }
+    
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Syne', sans-serif;
+      background: var(--arka);
+      color: var(--yazi);
+      transition: background var(--gecis), color var(--gecis);
+    }
+
+    /* MENÜ (NAVBAR) */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: var(--nav-arka);
+      border-bottom: 1px solid var(--kart-sinir);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 6vw; height: 64px;
+      transition: background var(--gecis);
+    }
+    .nav-logo {
+      font-family: 'Space Mono', monospace;
+      font-weight: 700; font-size: 1.1rem;
+      color: var(--vurgu); letter-spacing: -1px;
+    }
+    .nav-linkler { display: flex; gap: 2rem; list-style: none; }
+    .nav-linkler a {
+      text-decoration: none; font-size: 0.9rem; font-weight: 600;
+      color: var(--yazi); transition: color 0.2s; position: relative;
+    }
+    .nav-linkler a:hover { color: var(--vurgu); }
+    #temaButon {
+      background: none; border: 2px solid var(--vurgu);
+      border-radius: 50px; padding: 5px 16px;
+      color: var(--vurgu); font-family: 'Space Mono', monospace;
+      font-size: 0.78rem; cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+    }
+    #temaButon:hover { background: var(--vurgu); color: #fff; }
+
+    /* ANA BÖLÜM (HERO) */
+    #hakkimda {
+      min-height: 100vh;
+      display: flex; flex-direction: column;
+      justify-content: center; align-items: flex-start;
+      padding: 100px 8vw 60px;
+      position: relative; overflow: hidden;
+    }
+    .hero-arka {
+      position: absolute; inset: 0; z-index: 0; pointer-events: none;
+      background:
+        radial-gradient(ellipse 60% 60% at 85% 50%, rgba(30,144,255,0.13) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 40% at 15% 80%, rgba(0,212,255,0.08) 0%, transparent 70%);
+    }
+    .hero-etiket {
+      font-family: 'Space Mono', monospace; font-size: 0.82rem;
+      color: var(--vurgu2); letter-spacing: 3px; text-transform: uppercase;
+      margin-bottom: 1.2rem; position: relative; z-index: 1;
+    }
+    .hero-isim {
+      font-size: clamp(3rem, 8vw, 6.5rem); font-weight: 800;
+      line-height: 0.95; letter-spacing: -3px;
+      margin-bottom: 0.6rem; position: relative; z-index: 1;
+    }
+    .hero-isim span { color: var(--vurgu); }
+    .hero-altyazi {
+      font-family: 'Space Mono', monospace;
+      font-size: clamp(0.9rem, 2vw, 1.2rem);
+      color: var(--vurgu); margin-bottom: 1.2rem;
+      position: relative; z-index: 1;
+    }
+    #typewriter {
+      font-family: 'Space Mono', monospace; font-size: 1rem;
+      color: var(--vurgu2); margin-bottom: 2.5rem; position: relative; z-index: 1;
+    }
+    .hero-butonlar {
+      display: flex; gap: 1rem; flex-wrap: wrap; position: relative; z-index: 1;
+    }
+    .btn {
+      display: inline-block; padding: 13px 32px;
+      border-radius: 8px; font-family: 'Syne', sans-serif;
+      font-weight: 700; font-size: 0.92rem;
+      text-decoration: none; cursor: pointer;
+    }
+    .btn-ana {
+      background: var(--vurgu); color: #fff;
+    }
+    .btn-ikincil {
+      border: 2px solid var(--vurgu); color: var(--vurgu); background: transparent;
+    }
+    .btn-ikincil:hover { background: var(--vurgu); color: #fff; }
+
+    /* GENEL BÖLÜM AYARLARI */
+    .bolum { padding: 90px 8vw; }
+    .bolum-baslik {
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 800; letter-spacing: -1px; margin-bottom: 0.4rem;
+    }
+    .bolum-baslik span { color: var(--vurgu); }
+    .bolum-cizgi {
+      width: 60px; height: 4px; background: var(--vurgu);
+      border-radius: 99px; margin: 10px 0 2.8rem;
+    }
+    .bolum-alt { background: var(--kart); transition: background var(--gecis); }
+
+    /* EĞİTİM */
+    .egitim-kutu {
+      background: var(--arka); border: 1.5px solid var(--kart-sinir);
+      border-radius: 14px; padding: 22px 26px; margin-bottom: 1rem;
+      border-left: 4px solid var(--vurgu);
+    }
+    .egitim-okul { font-weight: 700; font-size: 1.05rem; margin-bottom: 4px; }
+    .egitim-bolum { color: var(--vurgu); font-size: 0.9rem; margin-bottom: 4px; }
+    .egitim-tarih { font-family: 'Space Mono', monospace; font-size: 0.78rem; opacity: 0.6; }
+
+    /* YETENEKLER */
+    .yetenekler-izgara {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1.2rem;
+    }
+    .yetenek-kart {
+      background: var(--arka); border: 1.5px solid var(--kart-sinir);
+      border-radius: 12px; padding: 18px 20px;
+    }
+    .yetenek-isim { font-weight: 700; margin-bottom: 10px; font-size: 0.92rem; }
+    .yetenek-bar-arka {
+      background: var(--kart-sinir); border-radius: 99px; height: 7px; overflow: hidden;
+    }
+    .yetenek-bar {
+      height: 100%; background: var(--vurgu); border-radius: 99px;
+    }
+
+    /* PROJE KARTLARI */
+    .proje-izgara {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem;
+    }
+    .proje-kart {
+      background: var(--kart); border: 1.5px solid var(--kart-sinir);
+      border-radius: 16px; overflow: hidden; display: flex; flex-direction: column;
+    }
+    .proje-ust {
+      height: 150px; display: flex; align-items: center; justify-content: center; font-size: 3rem; background: rgba(30,144,255,0.11);
+    }
+    .proje-ic { padding: 20px; flex: 1; display: flex; flex-direction: column; }
+    .proje-kategori {
+      font-family: 'Space Mono', monospace; font-size: 0.7rem;
+      letter-spacing: 2px; text-transform: uppercase; color: var(--vurgu2); margin-bottom: 6px;
+    }
+    .proje-baslik { font-size: 1.08rem; font-weight: 700; margin-bottom: 8px; }
+    .proje-aciklama { font-size: 0.86rem; opacity: 0.73; flex: 1; line-height: 1.65; }
+    .proje-teknolojiler { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; }
+    .teknoloji-etiketi {
+      padding: 3px 11px; border-radius: 50px;
+      background: rgba(30,144,255,0.11); color: var(--vurgu); font-size: 0.74rem; font-weight: 600;
+    }
+
+    /* İLETİŞİM */
+    .iletisim-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1.2rem;
+    }
+    .iletisim-kart {
+      background: var(--arka); border: 1.5px solid var(--kart-sinir);
+      border-radius: 14px; padding: 20px 22px;
+      display: flex; align-items: center; gap: 1rem;
+      text-decoration: none; color: var(--yazi);
+    }
+    .iletisim-ikon {
+      font-size: 1.6rem; width: 46px; height: 46px;
+      background: rgba(30,144,255,0.11); border-radius: 12px;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .iletisim-label { font-size: 0.75rem; opacity: 0.6; margin-bottom: 2px; }
+    .iletisim-deger { font-weight: 700; font-size: 0.92rem; }
+
+    /* FOOTER */
+    footer {
+      text-align: center; padding: 28px 6vw;
+      border-top: 1px solid var(--kart-sinir);
+      font-family: 'Space Mono', monospace; font-size: 0.78rem; opacity: 0.6;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 640px) {
+      .bolum { padding: 60px 5vw; }
+      #hakkimda { padding: 100px 5vw 50px; }
+    }
+    @media (max-width: 480px) {
+      .nav-linkler { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">&lt;MS /&gt;</div>
+  <ul class="nav-linkler">
+    <li><a href="#hakkimda">Hakkımda</a></li>
+    <li><a href="#yetenekler">Yetenekler</a></li>
+    <li><a href="#projeler">Projeler</a></li>
+    <li><a href="#iletisim">İletişim</a></li>
+  </ul>
+  <button id="temaButon" onclick="temaDegistir()">🌙 Karanlık</button>
+</nav>
+
+<section id="hakkimda">
+  <div class="hero-arka"></div>
+  <p class="hero-etiket">✦ Hoş geldiniz</p>
+  <h1 class="hero-isim">Mehmet<br/><span>Şenol</span></h1>
+  <p class="hero-altyazi">Bilgisayar Programcılığı Öğrencisi</p>
+  <p id="typewriter">Web Geliştirmeye İlgi Duyuyorum</p>
+  <div class="hero-butonlar">
+    <a href="#projeler" class="btn btn-ana">Projelerimi Gör</a>
+    <a href="#iletisim" class="btn btn-ikincil">İletişime Geç</a>
+  </div>
+</section>
+
+<section class="bolum bolum-alt" id="egitim">
+  <h2 class="bolum-baslik">Eğitim <span>Geçmişim</span></h2>
+  <div class="bolum-cizgi"></div>
+  <div class="egitim-kutu">
+    <div class="egitim-okul">🎓 Bilgisayar Programcılığı</div>
+    <div class="egitim-bolum">İnternet Programcılığı ve Web Teknolojileri</div>
+    <div class="egitim-tarih">2025 – Devam ediyor</div>
+  </div>
+  <div class="egitim-kutu">
+    <div class="egitim-okul">📚 Ön Yüz Geliştirme (Öğrenci)</div>
+    <div class="egitim-bolum">HTML, CSS ve Temel JavaScript Öğrenimi</div>
+    <div class="egitim-tarih">2025 - devam ediyor</div>
+  </div>
+</section>
+
+<section class="bolum" id="yetenekler">
+  <h2 class="bolum-baslik">Teknik <span>Yetenekler</span></h2>
+  <div class="bolum-cizgi"></div>
+  <div class="yetenekler-izgara" id="yetenek-alani">
+    
+    <div class="yetenek-kart">
+      <div class="yetenek-isim">HTML &mdash; orta</div>
+     
+      </div>
+    </div>
+
+    <div class="yetenek-kart">
+      <div class="yetenek-isim">CSS &mdash; orta</div>
+      
+    
+      <div class="yetenek-kart"></div> 
+      <div class="yetenek-isim">JavaScript &mdash; orta</div>
+     
+       
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="bolum bolum-alt" id="projeler">
+  <h2 class="bolum-baslik">Proje <span>Galerim</span></h2>
+  <div class="bolum-cizgi"></div>
+  <div class="proje-izgara" id="proje-alani">
+    
+    <div class="proje-kart">
+      <div class="proje-ust">*</div>
+      <div class="proje-ic">
+        <div class="proje-kategori">Web Projesi</div>
+        <div class="proje-baslik">Kişisel Portfolio Vize Ödevi</div>
+        <p class="proje-aciklama">İnternet programcılığı dersi için hazırladığım ilk portfolyo sitem. Sayfa geçişleri ve karanlık mod özelliği bulunuyor.</p>
+        <div class="proje-teknolojiler">
+          <span class="teknoloji-etiketi">HTML</span>
+          <span class="teknoloji-etiketi">CSS</span>
+          <span class="teknoloji-etiketi">JS</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="proje-kart">
+      <div class="proje-ust"></div>
+      <div class="proje-ic">
+        <div class="proje-kategori">Web Projesi</div>
+        <div class="proje-baslik">Basit Liste Tasarımı</div>
+        <p class="proje-aciklama">HTML tablolama ve CSS grid yapılarını öğrenmek amacıyla yaptığım basit bir liste tasarım uygulaması.</p>
+        <div class="proje-teknolojiler">
+          <span class="teknoloji-etiketi">HTML</span>
+          <span class="teknoloji-etiketi">CSS</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="bolum" id="iletisim">
+  <h2 class="bolum-baslik">İletişime <span>Geç</span></h2>
+  <div class="bolum-cizgi"></div>
+  <div class="iletisim-grid">
+    <a href="mailto:mehmetsenol@email.com" class="iletisim-kart">
+      <div class="iletisim-ikon">@</div>
+      <div>
+        <div class="iletisim-label">E-Posta</div>
+        <div class="iletisim-deger">senolmehmet146@gmail.com</div>
+      </div>
+    </a>
+    <a href="https://github.com/senolmehmet146-ui" target="_blank" class="iletisim-kart">
+      <div class="iletisim-ikon"></div>
+      <div>
+        <div class="iletisim-label">GitHub</div>
+        <div class="iletisim-deger">github.com/senolmehmet146-ui</div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<footer>
+  &copy; 2026 Mehmet Şenol &nbsp;—&nbsp; Vize Ödevi İçin Hazırlandı
+</footer>
+
+<script>
+  function temaDegistir() {
+    var htmlElementi = document.documentElement;
+    var suankiTema = htmlElementi.getAttribute('data-tema');
+
+    if (suankiTema === 'karanlik') {
+      htmlElementi.setAttribute('data-tema', 'acik');
+      document.getElementById('temaButon').textContent = ' Karanlık';
+    } else {
+      htmlElementi.setAttribute('data-tema', 'karanlik');
+      document.getElementById('temaButon').textContent = ' Aydınlık';
+    }
+  }
+</script>
+
+</body>
+</html>
